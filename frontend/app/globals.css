@@ -1,0 +1,165 @@
+@import "tailwindcss";
+
+/*
+  PersonalIQ design tokens.
+  References: Linear (app chrome, density, dark theme) + Ramp (money language, light theme, lime).
+  - Near-black canvas; sidebar sits on the canvas, content sits in an inset panel with a hairline border.
+  - Almost monochrome. ONE accent: lime, used as a fill for the main action on a screen, with dark text.
+    --accent-ink is the accent when it has to be text or an icon (lime is unreadable as text on white).
+  - Status colours are semantic only (positive / caution / negative).
+  - Radius rule: panel 12px, cards 10px, controls 6px, pills full.
+*/
+
+:root {
+  --bg: #08090a;
+  --panel: #0f1011;
+  --surface: #151618;
+  --surface-2: #1c1d20;
+  --line: #222326;
+  --line-strong: #2f3035;
+  --fg: #f7f8f8;
+  --muted: #8a8f98;
+  --subtle: #62666d;
+  --primary: #e4f222;
+  --primary-hover: #eef76a;
+  --primary-fg: #141414;
+  --accent: #e4f222;
+  --accent-ink: #e4f222;
+  --accent-soft: rgb(228 242 34 / 0.14);
+  --positive: #4cb782;
+  --positive-fg: #06180e;
+  --caution: #e2b340;
+  --negative: #eb5757;
+
+  --z-nav: 40;
+  --z-overlay: 50;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f3f3f1;
+    --panel: #fdfdfc;
+    --surface: #f7f7f5;
+    --surface-2: #eeeeeb;
+    --line: #e5e5e1;
+    --line-strong: #cfcfca;
+    --fg: #141414;
+    --muted: #5d5d58;
+    --subtle: #85857f;
+    --primary: #e4f222;
+    --primary-hover: #d6e40f;
+    --primary-fg: #141414;
+    --accent: #e4f222;
+    --accent-ink: #5b6300;
+    --accent-soft: rgb(228 242 34 / 0.35);
+    --positive: #1f8a55;
+    --positive-fg: #ffffff;
+    --caution: #946800;
+    --negative: #c4332b;
+    color-scheme: light;
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-panel: var(--panel);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-fg: var(--primary-fg);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-positive: var(--positive);
+  --color-positive-fg: var(--positive-fg);
+  --color-caution: var(--caution);
+  --color-negative: var(--negative);
+
+  --radius-panel: 12px;
+  --radius-card: 10px;
+  --radius-control: 6px;
+
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-feature-settings: "cv11", "ss01";
+  font-size: 14px;
+}
+
+::selection {
+  background: var(--accent-soft);
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+.press:active {
+  transform: scale(0.98);
+}
+
+/* Skeleton rows while data loads. Static under reduced motion. */
+.skeleton {
+  background: var(--surface-2);
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .page-enter {
+    animation: page-enter 160ms var(--ease-out) both;
+  }
+  @keyframes page-enter {
+    from {
+      opacity: 0;
+      transform: translateY(3px);
+    }
+  }
+  .press {
+    transition-property: color, background-color, border-color, transform;
+  }
+  .skeleton {
+    animation: skeleton 1.4s ease-in-out infinite;
+  }
+  @keyframes skeleton {
+    50% {
+      opacity: 0.5;
+    }
+  }
+}
+
+/* Pop-up dialogs */
+.dialog::backdrop {
+  background: rgb(0 0 0 / 0.55);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .dialog[open] {
+    animation: dialog-in 180ms var(--ease-out);
+  }
+  .dialog[open]::backdrop {
+    animation: fade-in 180ms var(--ease-out);
+  }
+  @keyframes dialog-in {
+    from {
+      opacity: 0;
+      transform: translateY(8px) scale(0.99);
+    }
+  }
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+  }
+}

@@ -1,0 +1,13 @@
+date,merchant,category,amount,currency
+2026-09-14,FreshCart,Groceries,64.20,USD
+2026-09-18,Metro Transit,Transport,30.00,USD
+2026-09-22,Streamly,Subscriptions,15.99,USD
+2026-09-29,Brightside Supply,Home,24.99,USD
+2026-10-03,FreshCart,Groceries,58.75,USD
+2026-10-09,Volt Corner Electronics,Electronics,29.99,USD
+2026-10-14,Corner Bistro,Dining,27.40,USD
+2026-10-20,FreshCart,Groceries,71.10,USD
+2026-10-22,Streamly,Subscriptions,15.99,USD
+2026-10-28,Metro Transit,Transport,30.00,USD
+2026-11-02,FreshCart,Groceries,66.35,USD
+2026-11-06,Corner Bistro,Dining,31.80,USD
